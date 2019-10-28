@@ -22,7 +22,34 @@ namespace JSON_NumberValidation
 
         public static bool GetJsonNumber(string jsonNumber)
         {
-            if (!IsNumber(jsonNumber))
+            if (NumberIsNegative(jsonNumber))
+            {
+                if (!IsNumber(jsonNumber, 1))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!IsNumber(jsonNumber, 0))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        static bool NumberIsNegative(string jsonNumber)
+        {
+                if (jsonNumber[0] == '-')
+                {
+                }
+
+                if (Int32.TryParse(Convert.ToString(jsonNumber[1]), out int number))
+                {
+            }
+            else
             {
                 return false;
             }
@@ -30,9 +57,9 @@ namespace JSON_NumberValidation
             return true;
         }
 
-        static bool IsNumber(string number)
+        static bool IsNumber(string number, int index)
         {
-            for (int i = 0; i < number.Length; i++)
+            for (int i = index; i < number.Length; i++)
             {
                 if (!Int32.TryParse(Convert.ToString(number[i]), out int validNumber))
                 {

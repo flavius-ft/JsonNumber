@@ -13,5 +13,13 @@ namespace NumberValidation.Tests
             
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void CheckNegativeSimpleNumber()
+        {
+            string number = "-123";
+
+            Assert.True(Program.GetJsonNumber(number));
+        }
     }
 }
