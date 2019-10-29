@@ -47,9 +47,9 @@ namespace JSON_NumberValidation
                 return true;
                 }
 
-                if (Int32.TryParse(Convert.ToString(jsonNumber[1]), out int number))
+                if (jsonNumber[1] >= '1' && jsonNumber[1] <= '9')
                 {
-            }
+                }
             else
             {
                 return false;
@@ -62,12 +62,7 @@ namespace JSON_NumberValidation
         {
             for (int i = index; i < number.Length; i++)
             {
-                if (!Int32.TryParse(Convert.ToString(number[i]), out int validNumber))
-                {
-                    return false;
-                }
-
-                if (number[index] == '0')
+                if (number[i] < '1' || number[i] > '9')
                 {
                     return false;
                 }
