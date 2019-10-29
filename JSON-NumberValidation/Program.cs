@@ -44,16 +44,19 @@ namespace JSON_NumberValidation
         {
                 if (jsonNumber[0] == '-')
                 {
-                return true;
-                }
+                    if (jsonNumber[1] >= '1')
+                    {
+                    }
+                    else if (jsonNumber[1] <= '9')
+                    {
+                    }
+                    else
+                    {
+                    return false;
+                    }
 
-                if (jsonNumber[1] >= '1' && jsonNumber[1] <= '9')
-                {
+                    return true;
                 }
-            else
-            {
-                return false;
-            }
 
             return false;
         }
@@ -62,7 +65,11 @@ namespace JSON_NumberValidation
         {
             for (int i = index; i < number.Length; i++)
             {
-                if (number[i] < '1' || number[i] > '9')
+                if (number[i] < '1')
+                {
+                    return false;
+                }
+                else if (number[i] > '9')
                 {
                     return false;
                 }
