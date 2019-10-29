@@ -40,22 +40,21 @@ namespace JSON_NumberValidation
             return true;
         }
 
+        static bool IsInRange(char checkRange, char leftLimit, char rightLimit)
+        {
+            if (checkRange >= leftLimit && checkRange <= rightLimit)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         static bool NumberIsNegative(string jsonNumber)
         {
                 if (jsonNumber[0] == '-')
                 {
-                    if (jsonNumber[1] >= '1')
-                    {
-                    }
-                    else if (jsonNumber[1] <= '9')
-                    {
-                    }
-                    else
-                    {
-                    return false;
-                    }
-
-                    return true;
+                return IsInRange(jsonNumber[1], '1', '9');
                 }
 
             return false;
@@ -65,11 +64,7 @@ namespace JSON_NumberValidation
         {
             for (int i = index; i < number.Length; i++)
             {
-                if (number[i] < '1')
-                {
-                    return false;
-                }
-                else if (number[i] > '9')
+                if (!IsInRange(number[i], '1', '9'))
                 {
                     return false;
                 }
