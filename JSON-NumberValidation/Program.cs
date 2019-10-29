@@ -61,11 +61,21 @@ namespace JSON_NumberValidation
                         continue;
                     }
 
+                    if (IsExponent(number[i]))
+                    {
+                        continue;
+                    }
+                        
                     return false;
                 }
             }
 
             return true;
+        }
+
+        static bool IsExponent(char compare)
+        {
+            return compare == 'e' || compare == 'E';
         }
     }
 }

@@ -45,5 +45,13 @@ namespace NumberValidation.Tests
 
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void VerifyFractionalNumberWithExponent()
+        {
+            string number = "12.3e2";
+
+            Assert.True(Program.GetJsonNumber(number));
+        }
     }
 }
