@@ -21,5 +21,13 @@ namespace NumberValidation.Tests
 
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void VerifyNumberWith0First()
+        {
+            string number = "0123";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
