@@ -56,6 +56,11 @@ namespace JSON_NumberValidation
             {
                 if (!IsInRange(number[i], '1', '9'))
                 {
+                    if (number[i] == '.')
+                    {
+                        continue;
+                    }
+
                     return false;
                 }
             }
