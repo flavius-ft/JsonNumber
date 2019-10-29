@@ -47,12 +47,12 @@ namespace JSON_NumberValidation
 
         static bool NumberIsNegative(string jsonNumber)
         {
-                if (jsonNumber[0] == '-')
-                {
-                return IsInRange(jsonNumber[1], '1', '9');
-                }
+            if (jsonNumber.Length < 2)
+            {
+                return false;
+            }
 
-            return false;
+            return jsonNumber[0] == '-';
         }
 
         static bool IsNumber(string number, int index)

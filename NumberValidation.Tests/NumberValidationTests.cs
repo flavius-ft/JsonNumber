@@ -23,6 +23,14 @@ namespace NumberValidation.Tests
         }
 
         [Fact]
+        public void CheckWithNegativeMark()
+        {
+            string number = "-";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
         public void VerifyNumberWith0First()
         {
             string number = "0123";
