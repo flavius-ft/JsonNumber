@@ -42,12 +42,7 @@ namespace JSON_NumberValidation
 
         static bool IsInRange(char checkRange, char leftLimit, char rightLimit)
         {
-            if (checkRange >= leftLimit && checkRange <= rightLimit)
-            {
-                return true;
-            }
-
-            return false;
+            return checkRange >= leftLimit && checkRange <= rightLimit;
         }
 
         static bool NumberIsNegative(string jsonNumber)
