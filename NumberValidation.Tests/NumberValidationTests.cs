@@ -55,6 +55,14 @@ namespace NumberValidation.Tests
         }
 
         [Fact]
+        public void VerifyFractionalNumberWithTwoDotsAndNumbersAfterDots()
+        {
+            string number = "12..34";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
         public void VerifyFractionalNumberWithExponent()
         {
             string number = "12.3e2";
@@ -68,6 +76,14 @@ namespace NumberValidation.Tests
             string number = "12.3e";
 
             Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
+        public void VerifyFractionalNumberWithExponentWithAdditionOrSubstractionMark()
+        {
+            string number = "12.3e2+2";
+
+            Assert.True(Program.GetJsonNumber(number));
         }
     }
 }

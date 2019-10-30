@@ -65,12 +65,22 @@ namespace JSON_NumberValidation
                     {
                         continue;
                     }
+
+                    if (IsArithmetic(number, i))
+                    {
+                        continue;
+                    }
                         
                     return false;
                 }
             }
 
             return true;
+        }
+
+        static bool IsArithmetic(string number, int i)
+        {
+            return number.Length > 1 && CompareACharWithTwoValues(number[i], '+', '-');
         }
 
         static bool IsFractional(string number, int index)
@@ -90,7 +100,12 @@ namespace JSON_NumberValidation
                 return false;
             }
 
-            return compare[index] == 'e' || compare[index] == 'E';
+            return CompareACharWithTwoValues(compare[index], 'e', 'E');
+        }
+
+        static bool CompareACharWithTwoValues(char compare, char firstChar, char secondeChar)
+        {
+            return compare == firstChar || compare == secondeChar;
         }
     }
 }
