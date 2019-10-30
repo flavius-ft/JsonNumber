@@ -52,23 +52,25 @@ namespace JSON_NumberValidation
 
         static bool IsNumber(string number, int index)
         {
-            int count = 0;
+            int fractionalCount = 0;
+            int exponentCount = 0;
             for (int i = index; i < number.Length; i++)
             {
                 if (!IsInRange(number[i], '1', '9'))
                 {
-                    if (IsFractional(number, i) && count == 0)
+                    if (IsFractional(number, i) && Compare(exponentCount, fractionalCount))
                     {
-                        count++;
+                        fractionalCount++;
                         continue;
                     }
 
-                    if (IsExponent(number, i) && count == 1)
+                    if (IsExponent(number, i))
                     {
+                        exponentCount++;
                         continue;
                     }
 
-                    if (IsArithmetic(number, i) && count == 1)
+                    if (IsArithmetic(number, i) && fractionalCount == 1)
                     {
                         continue;
                     }
@@ -78,6 +80,11 @@ namespace JSON_NumberValidation
             }
 
             return true;
+        }
+
+        static bool Compare(int count1, int count2)
+        {
+            return count1 == 0 && count2 == 0;
         }
 
         static bool IsArithmetic(string number, int i)
