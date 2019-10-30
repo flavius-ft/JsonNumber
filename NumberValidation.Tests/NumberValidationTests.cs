@@ -85,5 +85,13 @@ namespace NumberValidation.Tests
 
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void VerifyFractionalNumberWithExponentFollowdByAdditionOrSubstractionMark()
+        {
+            string number = "12.3e+2";
+
+            Assert.True(Program.GetJsonNumber(number));
+        }
     }
 }
