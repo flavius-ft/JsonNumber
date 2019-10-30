@@ -61,7 +61,7 @@ namespace JSON_NumberValidation
                         continue;
                     }
 
-                    if (IsExponent(number[i]))
+                    if (IsExponent(number, i))
                     {
                         continue;
                     }
@@ -83,9 +83,14 @@ namespace JSON_NumberValidation
             return number[index] == '.' && IsInRange(number[index + 1], '1', '9');
         }
 
-        static bool IsExponent(char compare)
+        static bool IsExponent(string compare, int index)
         {
-            return compare == 'e' || compare == 'E';
+            if (index == compare.Length - 1)
+            {
+                return false;
+            }
+
+            return compare[index] == 'e' || compare[index] == 'E';
         }
     }
 }

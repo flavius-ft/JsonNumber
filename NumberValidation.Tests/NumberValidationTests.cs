@@ -61,5 +61,13 @@ namespace NumberValidation.Tests
 
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void VerifyFractionalNumberWithExponentLastChar()
+        {
+            string number = "12.3e";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
