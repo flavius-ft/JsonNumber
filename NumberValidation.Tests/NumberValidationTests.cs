@@ -125,5 +125,13 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateNUmberWithTwoExponents()
+        {
+            string number = "1e2e3";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }

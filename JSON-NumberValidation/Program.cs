@@ -64,7 +64,7 @@ namespace JSON_NumberValidation
                         continue;
                     }
 
-                    if (IsExponent(number, i))
+                    if (IsExponent(number, i) && exponentCount == 0)
                     {
                         exponentCount++;
                         continue;
