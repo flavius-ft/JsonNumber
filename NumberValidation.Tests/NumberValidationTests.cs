@@ -141,5 +141,13 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateFractionalNumberWithTwoArithmeticSimbols()
+        {
+            string number = "1.2e+-3";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
