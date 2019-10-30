@@ -109,5 +109,21 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateNUmberWithExponentInNumber()
+        {
+            string number = "12e3";
+
+            Assert.True(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
+        public void ValidateNUmberWithExponentLast()
+        {
+            string number = "12e";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
