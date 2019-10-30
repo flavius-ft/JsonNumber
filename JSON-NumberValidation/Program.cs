@@ -56,7 +56,7 @@ namespace JSON_NumberValidation
             {
                 if (!IsInRange(number[i], '1', '9'))
                 {
-                    if (number[i] == '.')
+                    if (IsFractional(number, i))
                     {
                         continue;
                     }
@@ -71,6 +71,16 @@ namespace JSON_NumberValidation
             }
 
             return true;
+        }
+
+        static bool IsFractional(string number, int index)
+        {
+            if (index == number.Length -1)
+            {
+                return false;
+            }
+
+            return number[index] == '.' && IsInRange(number[index + 1], '1', '9');
         }
 
         static bool IsExponent(char compare)
