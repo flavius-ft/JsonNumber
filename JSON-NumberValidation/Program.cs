@@ -80,7 +80,7 @@ namespace JSON_NumberValidation
 
         static bool IsArithmetic(string number, int i)
         {
-            return number.Length > 1 && CompareACharWithTwoValues(number[i], '+', '-');
+            return number.Length > 1 && "+-".Contains(number[i]);
         }
 
         static bool IsFractional(string number, int index)
@@ -95,17 +95,7 @@ namespace JSON_NumberValidation
 
         static bool IsExponent(string compare, int index)
         {
-            if (index == compare.Length - 1)
-            {
-                return false;
-            }
-
-            return CompareACharWithTwoValues(compare[index], 'e', 'E');
-        }
-
-        static bool CompareACharWithTwoValues(char compare, char firstChar, char secondeChar)
-        {
-            return compare == firstChar || compare == secondeChar;
+            return index < compare.Length - 1 && char.ToLower(compare[index]) == 'e';
         }
     }
 }
