@@ -133,5 +133,13 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateFractionalNumberWithTwoExponents()
+        {
+            string number = "1.2e3e4";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
