@@ -52,21 +52,23 @@ namespace JSON_NumberValidation
 
         static bool IsNumber(string number, int index)
         {
+            int count = 0;
             for (int i = index; i < number.Length; i++)
             {
                 if (!IsInRange(number[i], '1', '9'))
                 {
-                    if (IsFractional(number, i))
+                    if (IsFractional(number, i) && count == 0)
+                    {
+                        count++;
+                        continue;
+                    }
+
+                    if (IsExponent(number, i) && count == 1)
                     {
                         continue;
                     }
 
-                    if (IsExponent(number, i))
-                    {
-                        continue;
-                    }
-
-                    if (IsArithmetic(number, i))
+                    if (IsArithmetic(number, i) && count == 1)
                     {
                         continue;
                     }

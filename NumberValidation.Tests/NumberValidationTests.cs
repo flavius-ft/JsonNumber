@@ -93,5 +93,21 @@ namespace NumberValidation.Tests
 
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void TestFractionalNumberWithMultipleDots()
+        {
+            string number = "1.2.34";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
+        public void TestFractionalNumberWithExponentBeforeDot()
+        {
+            string number = "1e2.3";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
