@@ -173,5 +173,13 @@ namespace NumberValidation.Tests
 
             Assert.True(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateUnderUnitNumberWithNothingAfterDot()
+        {
+            string number = "0.";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
