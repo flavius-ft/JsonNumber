@@ -181,5 +181,21 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateUnderUnitNumberWithLeterInNumber()
+        {
+            string number = "0x.";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
+        public void ValidateUnderUnitNumberWithLeterAfterDot()
+        {
+            string number = "0.x";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }
