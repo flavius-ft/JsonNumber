@@ -22,22 +22,7 @@ namespace JSON_NumberValidation
 
         public static bool GetJsonNumber(string jsonNumber)
         {
-            if (NumberIsNegative(jsonNumber))
-            {
-                if (!IsNumber(jsonNumber, 1))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (!IsNumber(jsonNumber, 0))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return IsNumber(jsonNumber, NumberIsNegative(jsonNumber) ? 1 : 0);
         }
 
         static bool IsInRange(char checkRange, char leftLimit, char rightLimit)
@@ -59,6 +44,11 @@ namespace JSON_NumberValidation
             {
                 if (!IsInRange(number[i], '1', '9'))
                 {
+                    if (number[i] == '0' && number[i + 1] == '.')
+                    {
+                        continue;
+                    }
+
                     if (IsFractional(number, i) && Compare(exponentCount, 0, fractionalCount, 0))
                     {
                         fractionalCount++;

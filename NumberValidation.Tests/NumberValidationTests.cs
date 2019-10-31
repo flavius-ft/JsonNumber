@@ -149,5 +149,29 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void CheckNumberWithArithmeticSimbol()
+        {
+            string number = "12+";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
+        public void ValidateFractionalNumberWithTwoConsecutiveExponents()
+        {
+            string number = "1.2ee4";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
+
+        [Fact]
+        public void ValidateUnderUnitNumber()
+        {
+            string number = "0.2";
+
+            Assert.True(Program.GetJsonNumber(number));
+        }
     }
 }
