@@ -56,7 +56,7 @@ namespace JSON_NumberValidation
                         continue;
                     }
 
-                    if (CheckExponent(number, i) && exponentSimbol)
+                    if (IsExponent(number, i, exponentSimbol))
                     {
                         exponentSimbol = false;
                         continue;
@@ -73,6 +73,11 @@ namespace JSON_NumberValidation
             }
 
             return true;
+        }
+
+        static bool IsExponent(string number, int i, bool exponent)
+        {
+            return CheckExponent(number, i) && exponent;
         }
 
         static bool IsFractional(string number, int i, bool exponent, bool fractional)
