@@ -77,7 +77,7 @@ namespace JSON_NumberValidation
 
         static bool IsArithmetic(string number , int i , bool fractional, bool arithmetic)
         {
-            return CheckArithmetic(number, i) && Compare(fractional, false, arithmetic, true);
+            return CheckArithmetic(number, i) && !fractional && arithmetic;
         }
 
         static bool IsExponent(string number, int i, bool exponent)
@@ -87,17 +87,12 @@ namespace JSON_NumberValidation
 
         static bool IsFractional(string number, int i, bool exponent, bool fractional)
         {
-            return CheckFractional(number, i) && Compare(exponent, true, fractional, true);
+            return CheckFractional(number, i) && exponent && fractional;
         }
 
         static bool SubunitNumber(string number, int i)
         {
             return number[i] == '0' && number[i + 1] == '.';
-        }
-
-        static bool Compare(bool count1, bool i, bool count2, bool j)
-        {
-            return count1 == i && count2 == j;
         }
 
         static bool CheckArithmetic(string number, int i)
