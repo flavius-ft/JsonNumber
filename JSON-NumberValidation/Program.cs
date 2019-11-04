@@ -62,7 +62,7 @@ namespace JSON_NumberValidation
                         continue;
                     }
 
-                    if (CheckArithmetic(number, i) && Compare(fractionalSimbol, false,arithmeticSimbol, true))
+                    if (IsArithmetic(number, i, fractionalSimbol, arithmeticSimbol))
                     {
                         arithmeticSimbol = false;
                         continue;
@@ -73,6 +73,11 @@ namespace JSON_NumberValidation
             }
 
             return true;
+        }
+
+        static bool IsArithmetic(string number , int i , bool fractional, bool arithmetic)
+        {
+            return CheckArithmetic(number, i) && Compare(fractional, false, arithmetic, true);
         }
 
         static bool IsExponent(string number, int i, bool exponent)
