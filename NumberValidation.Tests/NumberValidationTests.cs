@@ -197,5 +197,13 @@ namespace NumberValidation.Tests
 
             Assert.False(Program.GetJsonNumber(number));
         }
+
+        [Fact]
+        public void ValidateUnderUnitNumberWithLeterLast()
+        {
+            string number = "0.1x";
+
+            Assert.False(Program.GetJsonNumber(number));
+        }
     }
 }

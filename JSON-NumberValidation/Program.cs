@@ -37,33 +37,34 @@ namespace JSON_NumberValidation
 
         static bool IsNumber(string number, int index)
         {
-            int fractionalCount = 0;
-            int exponentCount = 0;
-            int arithmeticCount = 0;
+            bool fractionalSimbol = true;
+            bool exponentSimbol = true;
+            bool arithmeticSimbol = true;
+
             for (int i = index; i < number.Length; i++)
             {
                 if (!IsInRange(number[i], '1', '9'))
                 {
-                    if (number[i] == '0' && number[i + 1] == '.')
+                    if (SubunitNumber(number, i))
                     {
                         continue;
                     }
 
-                    if (IsFractional(number, i) && Compare(exponentCount, 0, fractionalCount, 0))
+                    if (IsFractional(number, i, exponentSimbol, fractionalSimbol))
                     {
-                        fractionalCount++;
+                        fractionalSimbol = false;
                         continue;
                     }
 
-                    if (IsExponent(number, i) && exponentCount == 0)
+                    if (CheckExponent(number, i) && exponentSimbol)
                     {
-                        exponentCount++;
+                        exponentSimbol = false;
                         continue;
                     }
 
-                    if (IsArithmetic(number, i) && Compare(fractionalCount, 1,arithmeticCount, 0))
+                    if (CheckArithmetic(number, i) && Compare(fractionalSimbol, false,arithmeticSimbol, true))
                     {
-                        arithmeticCount++;
+                        arithmeticSimbol = false;
                         continue;
                     }
                         
@@ -74,17 +75,27 @@ namespace JSON_NumberValidation
             return true;
         }
 
-        static bool Compare(int count1, int i, int count2, int j)
+        static bool IsFractional(string number, int i, bool exponent, bool fractional)
+        {
+            return CheckFractional(number, i) && Compare(exponent, true, fractional, true);
+        }
+
+        static bool SubunitNumber(string number, int i)
+        {
+            return number[i] == '0' && number[i + 1] == '.';
+        }
+
+        static bool Compare(bool count1, bool i, bool count2, bool j)
         {
             return count1 == i && count2 == j;
         }
 
-        static bool IsArithmetic(string number, int i)
+        static bool CheckArithmetic(string number, int i)
         {
             return number.Length > 1 && "+-".Contains(number[i]);
         }
 
-        static bool IsFractional(string number, int index)
+        static bool CheckFractional(string number, int index)
         {
             if (index == number.Length -1)
             {
@@ -94,7 +105,7 @@ namespace JSON_NumberValidation
             return number[index] == '.' && IsInRange(number[index + 1], '1', '9');
         }
 
-        static bool IsExponent(string compare, int index)
+        static bool CheckExponent(string compare, int index)
         {
             return index < compare.Length - 1 && char.ToLower(compare[index]) == 'e';
         }
